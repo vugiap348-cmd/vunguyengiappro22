@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề Kiểm Tra Lịch Sử - Đề Số 23</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+:root {
+  --ink: #1c1c2e;
+  --ink2: #2d2d44;
+  --mid: #5a5a7a;
+  --soft: #9090aa;
+  --bg: #f4f3f8;
+  --bg2: #eceaf4;
+  --card: #ffffff;
+  --border: #dddae8;
+  --red: #d63031;
+  --red2: #b52a2a;
+  --red-bg: #fff0f0;
+  --gold: #e17025;
+  --gold-bg: #fff7ed;
+  --green: #00856f;
+  --green-bg: #e8f8f5;
+  --blue: #2d5be3;
+  --blue-bg: #edf2ff;
+  --shadow-sm: 0 2px 8px rgba(28,28,46,0.07);
+  --shadow: 0 4px 20px rgba(28,28,46,0.10);
+  --shadow-lg: 0 12px 40px rgba(28,28,46,0.15);
+  --radius: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ─── HEADER ─── */
+.hdr {
+  position: sticky; top: 0; z-index: 90;
+  background: var(--ink);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+}
+.hdr-inner {
+  max-width: 980px; margin: 0 auto;
+  padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+}
+.hdr-left { display: flex; align-items: center; gap: 12px; }
+.hdr-tag {
+  background: var(--red); color: #fff;
+  font-size: 0.68rem; font-weight: 800;
+  padding: 4px 10px; border-radius: 6px;
+  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+}
+.hdr-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; color: #fff; font-weight: 700;
+}
+.hdr-title small {
+  display: block; font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.68rem; font-weight: 400; color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 2px;
+}
+.hdr-right { display: flex; align-items: center; gap: 12px; }
+.hdr-progress-info {
+  font-size: 0.78rem; color: rgba(255,255,255,0.65); font-weight: 500;
+  background: rgba(255,255,255,0.08); border-radius: 8px;
+  padding: 6px 12px; white-space: nowrap;
+}
+.hdr-progress-info strong { color: #fff; }
+
+/* Timer */
+.timer-box {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.10);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  border-radius: 10px; padding: 7px 14px;
+}
+.timer-icon { font-size: 1rem; }
+.timer-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.18rem; font-weight: 700;
+  color: #fff; letter-spacing: 0.04em; min-width: 60px;
+  transition: color 0.3s;
+}
+.timer-val.warn { color: #f39c12; }
+.timer-val.danger { color: #ff6b6b; animation: blink .7s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.5} }
+
+/* Progress bar */
+.hdr-prog-bar { height: 3px; background: rgba(255,255,255,0.1); }
+.hdr-prog-fill {
+  height: 3px;
+  background: linear-gradient(90deg, #e17025, #d63031);
+  width: 0%; transition: width .4s ease;
+}
+
+/* ─── LAYOUT ─── */
+.main { max-width: 980px; margin: 0 auto; padding: 28px 16px 80px; }
+
+/* Section Header */
+.sec-hdr {
+  display: flex; align-items: center; gap: 12px;
+  margin: 32px 0 16px;
+}
+.sec-hdr:first-child { margin-top: 0; }
+.sec-pill {
+  background: linear-gradient(135deg, var(--ink), var(--ink2));
+  color: #fff; font-size: 0.72rem; font-weight: 800;
+  padding: 5px 14px; border-radius: 20px;
+  letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap;
+}
+.sec-line { flex: 1; height: 1.5px; background: linear-gradient(90deg, var(--border), transparent); }
+.sec-note {
+  font-size: 0.84rem; color: var(--mid); line-height: 1.65;
+  background: var(--gold-bg); border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0; padding: 10px 16px; margin-bottom: 18px;
+}
+
+/* ─── Q CARD ─── */
+.qcard {
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px;
+  margin-bottom: 14px; box-shadow: var(--shadow-sm);
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+  position: relative;
+}
+.qcard:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+.qcard.done { border-left: 4px solid var(--gold); }
+.qcard.ok { border-left: 4px solid var(--green); background: var(--green-bg); }
+.qcard.bad { border-left: 4px solid var(--red); background: var(--red-bg); }
+
+.qnum {
+  font-size: 0.68rem; font-weight: 800; color: var(--red);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.qnum::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.qtag {
+  position: absolute; top: 14px; right: 16px;
+  font-size: 0.68rem; font-weight: 800; padding: 3px 9px;
+  border-radius: 20px; display: none; letter-spacing: .04em;
+}
+.qtag.show { display: inline-block; }
+.qtag.ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+.qtag.bad { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
+.qtag.skip { background: #f0f0f0; color: var(--soft); border: 1px solid #ccc; }
+
+.qtext {
+  font-size: 0.95rem; line-height: 1.75; color: var(--ink); margin-bottom: 14px;
+  font-weight: 500;
+}
+
+/* Options */
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+@media(max-width:560px){ .opts { grid-template-columns: 1fr; } }
+
+.opt {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 13px; border: 1.5px solid var(--border);
+  border-radius: 9px; cursor: pointer;
+  transition: all .17s; background: var(--bg);
+  font-size: 0.88rem; line-height: 1.5; color: var(--mid);
+  user-select: none;
+}
+.opt input { display: none; }
+.opt:hover:not(.dis) {
+  border-color: var(--blue); background: var(--blue-bg); color: var(--ink);
+  transform: translateX(2px);
+}
+.opt-k {
+  min-width: 22px; height: 22px; border-radius: 50%;
+  background: var(--border); color: var(--soft);
+  font-weight: 800; font-size: 0.72rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px; transition: all .17s;
+}
+.opt.sel { border-color: var(--ink2); background: var(--bg2); color: var(--ink); }
+.opt.sel .opt-k { background: var(--ink2); color: #fff; }
+.opt.cor { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+.opt.cor .opt-k { background: var(--green); color: #fff; }
+.opt.wrg { border-color: var(--red); background: var(--red-bg); color: var(--red); text-decoration: line-through; text-decoration-color: rgba(214,48,49,.4); }
+.opt.wrg .opt-k { background: var(--red); color: #fff; }
+.opt.dis { cursor: default; }
+
+/* ─── PART 2 ─── */
+.p2card {
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 22px 22px;
+  margin-bottom: 18px; box-shadow: var(--shadow-sm);
+}
+.p2-intro { font-size: 0.88rem; color: var(--mid); font-weight: 600; margin-bottom: 10px; }
+
+.quote-box {
+  background: linear-gradient(135deg, rgba(28,28,46,.03), rgba(225,112,37,.05));
+  border-left: 4px solid var(--ink2); border-radius: 0 10px 10px 0;
+  padding: 16px 20px; margin: 10px 0 16px;
+  font-size: 0.90rem; line-height: 1.85;
+  color: var(--ink2); position: relative;
+  font-style: italic;
+}
+.quote-box::before {
+  content: '\201C'; position: absolute; top: -6px; left: 12px;
+  font-size: 2.8rem; color: var(--ink2); opacity: .13;
+  font-family: Georgia, serif; line-height: 1;
+}
+.quote-src {
+  display: block; margin-top: 10px;
+  font-size: 0.76rem; color: var(--soft);
+  font-style: normal; text-align: right; font-weight: 500;
+  font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+/* Table */
+.tbl-wrap { overflow-x: auto; margin: 10px 0 16px; }
+.p2-tbl { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 440px; }
+.p2-tbl th {
+  background: var(--ink); color: #fff;
+  padding: 9px 14px; text-align: left;
+  font-weight: 700; font-size: 0.78rem; letter-spacing: 0.03em;
+}
+.p2-tbl td {
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.65; color: var(--mid);
+}
+.p2-tbl tr:nth-child(even) td { background: rgba(28,28,46,0.025); }
+.p2-tbl td:first-child { font-weight: 700; color: var(--ink); white-space: nowrap; font-size: 0.8rem; }
+
+/* Sub items */
+.sub {
+  padding: 13px 15px; border: 1.5px solid var(--border);
+  border-radius: 10px; margin-bottom: 10px;
+  background: rgba(255,255,255,.6); transition: all .2s;
+}
+.sub.done { border-left: 3px solid var(--gold); }
+.sub.ok { background: var(--green-bg); border-color: var(--green); }
+.sub.bad { background: var(--red-bg); border-color: var(--red); }
+.sub-lbl { font-size: 0.7rem; font-weight: 800; color: var(--red); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.sub-txt { font-size: 0.9rem; line-height: 1.65; color: var(--ink); margin-bottom: 9px; }
+.tf-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.tf-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 20px; border: 1.5px solid var(--border);
+  border-radius: 8px; cursor: pointer; font-size: 0.88rem;
+  font-weight: 700; transition: all .17s; color: var(--mid);
+  user-select: none; background: var(--bg);
+}
+.tf-btn input { display: none; }
+.tf-btn:hover:not(.dis) { border-color: var(--ink); color: var(--ink); transform: translateY(-1px); background: var(--card); }
+.tf-btn.sel-t { border-color: var(--green); background: var(--green-bg); color: var(--green); box-shadow: 0 2px 8px rgba(0,133,111,.15); }
+.tf-btn.sel-f { border-color: var(--red); background: var(--red-bg); color: var(--red); box-shadow: 0 2px 8px rgba(214,48,49,.15); }
+.tf-btn.cor-tf { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+.tf-btn.wrg-tf { border-color: var(--red); background: var(--red-bg); color: var(--red); }
+.tf-btn.dis { cursor: default; }
+
+.sub-note {
+  font-size: 0.78rem; font-weight: 700; margin-top: 7px; display: none;
+}
+.sub-note.show { display: block; }
+.sub-note.ok { color: var(--green); }
+.sub-note.bad { color: var(--red); }
+
+/* ─── SUBMIT AREA ─── */
+.submit-area { text-align: center; padding: 36px 0 10px; }
+.btn-sub {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #d63031, #a01010);
+  color: #fff; border: none; border-radius: 50px;
+  padding: 16px 56px; font-size: 1rem; font-weight: 800;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 0 8px 28px rgba(214,48,49,.38);
+  transition: all .2s;
+}
+.btn-sub::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
+}
+.btn-sub:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(214,48,49,.45); }
+.btn-sub:active { transform: translateY(0); }
+.btn-sub:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-retry {
+  background: linear-gradient(135deg, var(--ink), var(--ink2));
+  color: #fff; border: none; border-radius: 50px;
+  padding: 13px 38px; font-size: 0.92rem; font-weight: 800;
+  font-family: 'Be Vietnam Pro', sans-serif; cursor: pointer;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(28,28,46,.3);
+  transition: all .2s; margin-top: 16px;
+}
+.btn-retry:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(28,28,46,.38); }
+
+/* ─── RESULT PANEL ─── */
+.result-panel {
+  display: none; background: var(--card);
+  border: 2px solid var(--border); border-radius: 20px;
+  padding: 36px 28px; margin-bottom: 28px;
+  box-shadow: var(--shadow-lg); text-align: center;
+  animation: fadeUp .5s ease;
+}
+.result-panel.show { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+
+.res-emoji { font-size: 3rem; margin-bottom: 6px; }
+.res-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem; font-weight: 700; color: var(--ink); margin-bottom: 4px;
+}
+.res-sub { font-size: .85rem; color: var(--soft); margin-bottom: 16px; }
+.res-score-big {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 4px;
+}
+.res-score-big.great { color: var(--green); }
+.res-score-big.mid { color: var(--gold); }
+.res-score-big.low { color: var(--red); }
+.res-unit { font-size: .82rem; color: var(--soft); margin-bottom: 20px; }
+
+.res-breakdown {
+  display: flex; justify-content: center; gap: 24px;
+  margin: 0 0 18px; flex-wrap: wrap;
+}
+.res-bk { text-align: center; min-width: 70px; }
+.res-bk-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 700; line-height: 1; margin-bottom: 3px;
+}
+.res-bk-val.g { color: var(--green); }
+.res-bk-val.r { color: var(--red); }
+.res-bk-val.o { color: var(--gold); }
+.res-bk-lbl { font-size: .72rem; color: var(--soft); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+
+.res-bar-wrap { max-width: 340px; margin: 0 auto 16px; }
+.res-bar-bg { background: var(--bg2); border-radius: 20px; height: 8px; overflow: hidden; }
+.res-bar-fill { height: 8px; border-radius: 20px; background: linear-gradient(90deg, var(--green), #52c41a); transition: width 1.2s cubic-bezier(.22,1,.36,1); width: 0%; }
+.res-bar-fill.mid { background: linear-gradient(90deg, var(--gold), #f9ca24); }
+.res-bar-fill.low { background: linear-gradient(90deg, var(--red), #fd79a8); }
+.res-pct { font-size: .78rem; color: var(--mid); margin-top: 5px; }
+
+.res-msg { font-size: .92rem; color: var(--mid); font-style: italic; line-height: 1.7; margin: 4px 0 6px; }
+
+/* ─── MODAL OVERLAYS ─── */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(28,28,46,.72); backdrop-filter: blur(6px);
+  z-index: 200; align-items: center; justify-content: center;
+  animation: fadeIn .35s ease;
+}
+.overlay.show { display: flex; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+/* Confirm Modal */
+.modal {
+  background: var(--card); border-radius: 20px;
+  padding: 36px 32px 28px; max-width: 400px; width: 90%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+  text-align: center; animation: popIn .35s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+.modal-icon { font-size: 2.6rem; margin-bottom: 10px; }
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.22rem; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+}
+.modal-msg { font-size: .88rem; color: var(--mid); line-height: 1.7; margin-bottom: 22px; }
+.modal-stats {
+  display: flex; gap: 12px; justify-content: center;
+  margin-bottom: 22px; flex-wrap: wrap;
+}
+.modal-stat {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 16px; min-width: 80px;
+}
+.modal-stat-v { font-size: 1.35rem; font-weight: 800; color: var(--ink); line-height: 1; font-family: 'Playfair Display', serif; }
+.modal-stat-l { font-size: .7rem; color: var(--soft); text-transform: uppercase; font-weight: 700; letter-spacing: .05em; margin-top: 2px; }
+.modal-stat-v.ok { color: var(--green); }
+.modal-stat-v.warn { color: var(--red); }
+.modal-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.modal-btn {
+  padding: 11px 26px; border-radius: 50px; border: none;
+  font-size: .88rem; font-weight: 800; cursor: pointer;
+  font-family: 'Be Vietnam Pro', sans-serif; letter-spacing: .04em;
+  text-transform: uppercase; transition: all .18s;
+}
+.modal-btn.primary {
+  background: linear-gradient(135deg, #d63031, #a01010);
+  color: #fff; box-shadow: 0 4px 16px rgba(214,48,49,.3);
+}
+.modal-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(214,48,49,.4); }
+.modal-btn.sec {
+  background: var(--bg2); color: var(--ink);
+  border: 1.5px solid var(--border);
+}
+.modal-btn.sec:hover { background: var(--border); }
+
+/* Time up modal */
+.timeup-modal {
+  background: linear-gradient(135deg, #1c1c2e, #2d2d44);
+  border-radius: 20px; padding: 40px 32px;
+  max-width: 380px; width: 90%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+  text-align: center; animation: popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+.timeup-icon { font-size: 3.5rem; margin-bottom: 12px; }
+.timeup-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 8px;
+}
+.timeup-msg { font-size: .88rem; color: rgba(255,255,255,.6); line-height: 1.7; }
+.timeup-countdown {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700; color: #ff6b6b;
+  margin: 14px 0 0; letter-spacing: 0.05em;
+}
+.timeup-bar-wrap { margin-top: 16px; background: rgba(255,255,255,.1); border-radius: 20px; height: 4px; overflow: hidden; }
+.timeup-bar { height: 4px; background: #ff6b6b; width: 100%; border-radius: 20px; transition: width .1s linear; }
+
+/* Unanswered strip */
+.unans-strip {
+  display: none; background: var(--gold-bg);
+  border: 1.5px solid var(--gold); border-radius: 10px;
+  padding: 12px 16px; font-size: .85rem; color: #7a4a10;
+  line-height: 1.6; margin-bottom: 18px;
+}
+.unans-strip.show { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-left">
+      <div class="hdr-tag">Lịch Sử</div>
+      <div class="hdr-title">
+        <small>Bài Kiểm Tra</small>
+        Đề Số 23
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div class="hdr-progress-info" id="progInfo">Đã trả lời <strong id="doneCount">0</strong>/40</div>
+      <div class="timer-box">
+        <span class="timer-icon">⏱</span>
+        <div class="timer-val" id="timerVal">45:00</div>
+      </div>
+    </div>
+  </div>
+  <div class="hdr-prog-bar"><div class="hdr-prog-fill" id="progFill"></div></div>
+</div>
+
+<!-- TIME UP OVERLAY -->
+<div class="overlay" id="timeupOverlay">
+  <div class="timeup-modal">
+    <div class="timeup-icon">⏰</div>
+    <div class="timeup-title">Hết Thời Gian!</div>
+    <div class="timeup-msg">Bài kiểm tra đã tự động nộp.<br>Đang tính kết quả của bạn…</div>
+    <div class="timeup-countdown" id="timeupCd">3</div>
+    <div class="timeup-bar-wrap"><div class="timeup-bar" id="timeupBar"></div></div>
+  </div>
+</div>
+
+<!-- CONFIRM SUBMIT OVERLAY -->
+<div class="overlay" id="confirmOverlay">
+  <div class="modal">
+    <div class="modal-icon" id="confIcon">📋</div>
+    <div class="modal-title" id="confTitle">Xác nhận nộp bài</div>
+    <div class="modal-msg" id="confMsg">Vui lòng kiểm tra thống kê trước khi nộp.</div>
+    <div class="modal-stats">
+      <div class="modal-stat">
+        <div class="modal-stat-v ok" id="confDone">0</div>
+        <div class="modal-stat-l">Đã làm</div>
+      </div>
+      <div class="modal-stat">
+        <div class="modal-stat-v warn" id="confLeft">0</div>
+        <div class="modal-stat-l">Bỏ trống</div>
+      </div>
+      <div class="modal-stat">
+        <div class="modal-stat-v" id="confTime">--</div>
+        <div class="modal-stat-l">Còn lại</div>
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-btn sec" onclick="closeConfirm()">← Làm tiếp</button>
+      <button class="modal-btn primary" onclick="doSubmit()">Nộp bài ngay ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="mainWrap">
+
+  <!-- RESULT -->
+  <div class="result-panel" id="resPanel">
+    <div class="res-emoji" id="resEmoji">🎯</div>
+    <div class="res-title">Kết Quả Bài Kiểm Tra</div>
+    <div class="res-sub" id="resSub">Đề Số 23 — Lịch Sử</div>
+    <div class="res-score-big" id="resBig">0.00</div>
+    <div class="res-unit">điểm / 10</div>
+    <div class="res-bar-wrap">
+      <div class="res-bar-bg"><div class="res-bar-fill" id="resBar"></div></div>
+      <div class="res-pct" id="resPct"></div>
+    </div>
+    <div class="res-breakdown">
+      <div class="res-bk">
+        <div class="res-bk-val g" id="rkC1">0</div>
+        <div class="res-bk-lbl">P.I Đúng</div>
+      </div>
+      <div class="res-bk">
+        <div class="res-bk-val r" id="rkW1">0</div>
+        <div class="res-bk-lbl">P.I Sai</div>
+      </div>
+      <div class="res-bk">
+        <div class="res-bk-val o" id="rkP2">0.00</div>
+        <div class="res-bk-lbl">Điểm P.II</div>
+      </div>
+    </div>
+    <div class="res-msg" id="resMsg"></div>
+    <button class="btn-retry" onclick="retryExam()">🔄 Làm lại (câu hỏi ngẫu nhiên)</button>
+  </div>
+
+  <div class="unans-strip" id="unansStrip">
+    ⚠️ Bạn còn <strong id="unansNum">0</strong> câu chưa trả lời. Hãy kiểm tra lại hoặc xác nhận nộp bài.
+  </div>
+
+  <!-- PART 1 -->
+  <div class="sec-hdr">
+    <div class="sec-pill">Phần I</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="sec-note">Câu 1 đến 24 — Mỗi câu chỉ chọn <strong>một phương án</strong>. Mỗi câu đúng: <strong>0,25 điểm</strong>.</div>
+  <div id="p1Wrap"></div>
+
+  <!-- PART 2 -->
+  <div class="sec-hdr">
+    <div class="sec-pill">Phần II</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="sec-note">Câu 1 đến 4 — Mỗi ý chọn <strong>Đúng / Sai</strong>. &nbsp;|&nbsp; 1 đúng: 0,1đ &nbsp;|&nbsp; 2 đúng: 0,25đ &nbsp;|&nbsp; 3 đúng: 0,5đ &nbsp;|&nbsp; 4 đúng: 1,0đ</div>
+  <div id="p2Wrap"></div>
+
+  <div class="submit-area">
+    <button class="btn-sub" id="btnSub" onclick="openConfirm()">📝 &nbsp; NỘP BÀI</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════
+const P1 = [
+  {id:1, q:"Nhân vật lịch sử nào sau đây đã lãnh đạo người Việt đánh đổ ách thống trị của triều đại phong kiến phương Bắc?", opts:{A:"Triệu Quang Phục.",B:"Đinh Bộ Lĩnh.",C:"Lê Thánh Tông.",D:"Lý Phật Tử."}, ans:"A"},
+  {id:2, q:"Nội dung nào sau đây đã phản ánh đúng ý nghĩa của khởi nghĩa Khúc Thừa Dụ đối với dân tộc Việt Nam (đầu thế kỷ X)?", opts:{A:"Giành lại nền độc lập lâu dài, bền vững.",B:"Chấm dứt thời kỳ phong kiến Bắc thuộc.",C:"Mở ra kỉ nguyên mới cho lịch sử dân tộc.",D:"Đã căn bản khôi phục chủ quyền dân tộc."}, ans:"D"},
+  {id:3, q:"Nhằm tăng cường sức mạnh quân sự để đối phó với cuộc xâm lược của nhà Minh cuối thế kỉ XIV, Hồ Quý Ly đã tiến hành", opts:{A:"cải cách văn hoá, xã hội, giáo dục.",B:"xây dựng toà thành Tây Đô kiên cố.",C:"buộc vua Trần nhường ngôi cho mình.",D:"ban hành chính sách hạn điền, hạn nô."}, ans:"B"},
+  {id:4, q:"Nội dung nào sau đây không phải là khó khăn của triều đại nhà Trần ở nửa sau thế kỉ XIV?", opts:{A:"Giặc Minh lăm le sang xâm lược, quân Chăm-pa tấn công.",B:"Hồ Quý Ly đã tiến hành cuộc cải cách trên nhiều lĩnh vực.",C:"Hạn hán, lũ lụt, mất mùa, đói kém xảy ra ở nhiều địa phương.",D:"Nhiều cuộc khởi nghĩa nông dân diễn ra chống lại triều đình."}, ans:"B"},
+  {id:5, q:"Hội nghị quốc tế Xan Phran-xi-xcô (Mỹ) năm 1945 đã thông qua văn kiện nào sau đây?", opts:{A:"Hiến chương Liên hợp quốc.",B:"Hiệp định đình chiến ở Triều Tiên.",C:"Hiến chương ASEAN.",D:"Hiệp định đình chiến ở Đông Dương."}, ans:"A"},
+  {id:6, q:"Nội dung nào sau đây là vai trò của Liên hợp quốc về bảo đảm quyền con người, phát triển văn hóa, xã hội?", opts:{A:"Tăng cường bình đẳng giới và vị thế, năng lực của phụ nữ.",B:"Giảm lãi suất cho vay ở hầu hết các nước đang phát triển.",C:"Cải thiện năng lực công nghệ thông tin cho mọi người dân.",D:"Hoàn thành phổ cập giáo dục đại học ở các nước phát triển."}, ans:"A"},
+  {id:7, q:"Đầu những năm 60 của thế kỉ XX, tổ chức nào sau đây được thành lập ở khu vực Đông Nam Á?", opts:{A:"Tổ chức MAPHILINDO.",B:"Liên minh Châu Âu.",C:"Diễn đàn hợp tác Á - Âu.",D:"Tổ chức Thương mại thế giới."}, ans:"A"},
+  {id:8, q:"Ngày 8/8/1967, tổ chức Hiệp hội các quốc gia Đông Nam Á (ASEAN) được thành lập là biểu hiện của xu thế nào sau đây?", opts:{A:"Liên kết khu vực.",B:"Toàn cầu hóa.",C:"Hòa hoãn Đông-Tây.",D:"Liên minh quân sự."}, ans:"A"},
+  {id:9, q:"APSC là tên viết tắt bằng tiếng Anh của", opts:{A:"Cộng đồng Kinh tế ASEAN.",B:"Cộng đồng Chính trị - An ninh ASEAN.",C:"Cộng đồng Văn hóa – Xã hội ASEAN",D:"Hiệp hội các quốc gia Đông Nam Á."}, ans:"B"},
+  {id:10, q:"Trong giai đoạn 1975-1979, quân dân Việt Nam đấu tranh chống lại cuộc tấn công xâm lấn biên giới Tây Nam của lực lượng nào sau đây?", opts:{A:"Tập đoàn Khơme đỏ.",B:"Thực dân Hà Lan.",C:"Quân đội Sài Gòn.",D:"Quân đội Trung Quốc."}, ans:"A"},
+  {id:11, q:"Năm 1979, quân dân Việt Nam đấu tranh chống lại cuộc tấn công xâm lấn biên giới phía Bắc của lực lượng nào sau đây?", opts:{A:"Quân đội Trung Quốc.",B:"Quân đội Pháp.",C:"Thực dân Hà Lan.",D:"Quân đội Sài Gòn."}, ans:"A"},
+  {id:12, q:"Cuộc đấu tranh bảo vệ Tổ quốc của nhân dân Việt Nam giai đoạn 1975 - 1979 đã", opts:{A:"hoàn thành cuộc cách mạng tư sản dân quyền.",B:"bảo vệ vững chắc Tổ quốc xã hội chủ nghĩa.",C:"hoàn thành thống nhất đất nước về mặt nhà nước.",D:"mở ra kỉ nguyên đất nước độc lập, thống nhất."}, ans:"B"},
+  {id:13, q:"Cuộc đấu tranh bảo vệ Tổ quốc của nhân dân Việt Nam giai đoạn 1975 - 1979 đã", opts:{A:"mở ra kỉ nguyên đất nước độc lập, thống nhất.",B:"hoàn thành cuộc cách mạng tư sản dân quyền.",C:"hoàn thành thống nhất đất nước về mặt nhà nước.",D:"để lại những bài học kinh nghiệm quý giá về sau."}, ans:"D"},
+  {id:14, q:"Trong đường lối đổi mới đất nước của Đảng Cộng sản Việt Nam giai đoạn 1996 - 2006, nội dung nào sau đây là một trong những chủ trương đổi mới về chính trị?", opts:{A:"Cải cách tổ chức Nhà nước pháp quyền xã hội chủ nghĩa.",B:"Phát triển giáo dục - đào tạo và khoa học – công nghệ.",C:"Xây dựng và phát triển nền văn hoá dân tộc tiên tiến.",D:"Xây dựng và củng cố nền quốc phòng toàn dân."}, ans:"A"},
+  {id:15, q:"Nội dung nào sau đây không phải ý nghĩa của thành tựu kinh tế của Việt Nam thời kì Đổi mới?", opts:{A:"Cải thiện đời sống và thu nhập của các tầng lớp nhân dân.",B:"Đưa Việt Nam thoát khỏi khủng hoảng kinh tế - xã hội.",C:"Đưa Việt Nam trở thành nền kinh tế lớn nhất Đông Nam Á.",D:"Tạo điều kiện thuận lợi để hội nhập quốc tế toàn diện."}, ans:"C"},
+  {id:16, q:"Năm 1950, Chính phủ Việt Nam Dân chủ Cộng hòa thiết lập quan hệ ngoại giao với các quốc gia nào sau đây?", opts:{A:"Trung Quốc và Liên Xô.",B:"Nhật Bản và Trung Quốc.",C:"Lào và Cam-pu-chia.",D:"Hàn Quốc và Liên Xô"}, ans:"A"},
+  {id:17, q:"Sau Cách mạng tháng Tám đến trước tháng 2/1946, Chính phủ Việt Nam Dân chủ Cộng hòa thực hiện đường lối đối ngoại với Trung Quốc là", opts:{A:"nhân nhượng, hòa hoãn.",B:"ổn định và phát triển.",C:"láng giềng thân thiết.",D:"hợp tác toàn diện."}, ans:"A"},
+  {id:18, q:"Nội dung nào sau đây phản ánh đúng mục đích chủ yếu của Phan Bội Châu trong thời gian hoạt động tại Nhật Bản (những năm đầu thế kỉ XX)?", opts:{A:"Học hỏi Nhật Bản để phát triển kinh tế.",B:"Cầu viện Nhật Bản giúp đỡ đánh Pháp.",C:"Giới thiệu về đất nước con người Việt Nam.",D:"Củng cố mối quan hệ ngoại giao với Nhật."}, ans:"B"},
+  {id:19, q:"Việc học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh được Đảng và Nhà nước Việt Nam xác định gắn với quá trình", opts:{A:"xây dựng và phát triển văn hóa, con người Việt Nam.",B:"mở rộng quan hệ ngoại giao với các nước trên thế giới.",C:"phát triển các khu công nghiệp và khu chế xuất hiện đại.",D:"xây dựng và phát triển cơ sở hạ tầng giao thông hiện đại."}, ans:"A"},
+  {id:20, q:"Trong quá trình hoạt động cách mạng từ 1920 đến 1945, Nguyễn Ái Quốc không có hoạt động nào sau đây?", opts:{A:"Xuất bản tờ báo Người cùng khổ.",B:"Mở lớp đào tạo cán bộ cách mạng.",C:"Lãnh đạo cuộc khởi nghĩa Yên Bái.",D:"Viết tác phẩm Tuyên ngôn độc lập."}, ans:"C"},
+  {id:21, q:"Nhận định nào sau đây là đúng để lý giải nguyên nhân từ năm 1945 đến năm 2000, số lượng thành viên của Liên hợp quốc tăng nhanh?", opts:{A:"Phong trào đấu tranh giải phóng dân tộc thắng lợi nhiều quốc gia đã giành được độc lập.",B:"Các nước đang phát triển muốn gia nhập Liên hợp quốc để nhận được viện trợ kinh tế.",C:"Tác động của tích cực của Mỹ và Liên Xô đến trật tự thế giới 2 cực và Chiến tranh lạnh.",D:"Khủng hoảng kinh tế toàn cầu đặt ra yêu cầu thành lập nhiều quốc gia mới để giải quyết."}, ans:"A"},
+  {id:22, q:"Thực tiễn cách mạng từ khi Đảng Cộng sản Việt Nam ra đời từ năm 1930 đến nay, việc củng cố, tăng cường khối đại đoàn kết toàn dân đã chứng minh", opts:{A:"một dân tộc nhỏ bé, nếu đoàn kết nhất trí cuối cùng nhất định thắng lợi.",B:"cho việc góp phần vào bảo vệ hòa bình, ổn định và an ninh thế giới.",C:"khối đoàn kết là nguyên nhân duy nhất dẫn đến thắng lợi của cách mạng.",D:"khối đoàn kết là nhân tố duy nhất quyết định mọi thắng lợi của cách mạng."}, ans:"A"},
+  {id:23, q:"Thực tiễn những thành tựu đổi mới ở Việt Nam (từ năm 1986) đã chứng tỏ", opts:{A:"đường lối đổi mới của Đảng là nhân tố quyết định thành công.",B:"đổi mới chính trị luôn đi trước mở đường cho đổi mới kinh tế.",C:"các yếu tố bên ngoài quyết định thành công của công cuộc Đổi mới.",D:"đổi mới văn hoá - giáo dục cần được ưu tiên hơn các lĩnh vực khác."}, ans:"A"},
+  {id:24, q:"Nhận định nào sau đây là đúng về vai trò của Nguyễn Ái Quốc – Hồ Chí Minh đối với cách mạng Việt Nam trong giai đoạn 1920 đến 1945?", opts:{A:"Vạch ra đường lối kháng chiến chống Pháp đúng đắn, sáng tạo.",B:"Xác định đúng nhiệm vụ cho cách mạng hai miền Nam - Bắc.",C:"Trực tiếp lãnh đạo và tổ chức phong trào Xô viết Nghệ - Tĩnh.",D:"Đặt nền móng cho mối liên hệ giữa cách mạng Việt Nam và thế giới."}, ans:"D"}
+];
+
+const P2 = [
+  {
+    id:"P2Q1", qnum:1,
+    intro:"Cho những thông tin trong bảng sau đây:",
+    type:"table",
+    tableData:[
+      {period:"1975 -1979", content:"Trung Quốc liên tục có các hành động khiêu khích xâm phạm biên giới Việt Nam."},
+      {period:"17/02/1979", content:"Trung Quốc đưa 60 vạn quân tấn công 6 tỉnh biên giới phía Bắc Việt Nam."},
+      {period:"05/03/1979", content:"Trung Quốc tuyên bố rút quân khỏi Việt Nam."},
+      {period:"1979-1989", content:"Xung đột Việt-Trung vẫn diễn ra, đặc biệt ở mặt trận Vị Xuyên."}
+    ],
+    subs:[
+      {key:"a", text:"Tư liệu đề cập đến những diễn biến chính trong mối quan hệ căng thẳng giữa Việt Nam và Trung Quốc sau năm 1975.", ans:true},
+      {key:"b", text:"Sau năm 1975, Trung Quốc đã có những hành động gây tổn hại đến quan hệ hữu nghị truyền thống giữa hai nước.", ans:true},
+      {key:"c", text:"Năm 1975, Trung Quốc đã tiến hành cuộc chiến tranh xâm lược biên giới phía Bắc Việt Nam, kéo dài đến 1989.", ans:false},
+      {key:"d", text:"Mối quan hệ căng thẳng giữa Việt Nam và Trung Quốc sau năm 1975 phản ánh đặc điểm của trật tự hai cực Ianta.", ans:false}
+    ]
+  },
+  {
+    id:"P2Q2", qnum:2,
+    intro:"Cho đoạn tư liệu sau đây:",
+    type:"quote",
+    quote:`"Sự ra đời hai học thuyết phản ánh hai ý thức hệ đối lập nhau được sử dụng làm cơ sở tư tưởng cho hai cực trong trật tự thế giới sau Chiến tranh thế giới thứ hai - Trật tự I-an-ta; và cũng là sự khởi đầu cho mối quan hệ quốc tế mang hình thái Chiến tranh lạnh, một cuộc chiến tuy không nổ súng, không đổ máu nhưng luôn căng thẳng, gay gắt nhằm loại trừ lẫn nhau, tiêu diệt nhau. Chiến tranh không bùng nổ trên phạm vi thế giới, song đây đó trên Trái Đất, không lúc nào ngừng tiếng súng, ngừng đổ máu mà ở phía sau vẫn là sự dính líu của các nước lớn. Điều đó làm cho tình hình diễn biến rất phức tạp, tác động sâu sắc đến vận mệnh các quốc gia, dân tộc".`,
+    source:"(GS. Vũ Dương Ninh, Quan hệ đối ngoại Việt Nam (1940 - 2020),\nNXB Chính trị Quốc gia Sự thật, 2022, tr.115)",
+    subs:[
+      {key:"a", text:"Tư liệu đề cập đến những đặc điểm và tác động của Trật tự hai cực và Chiến tranh lạnh sau Chiến tranh thế giới thứ hai.", ans:true},
+      {key:"b", text:"Sau Chiến tranh thế giới thứ hai, do đối lập về mục tiêu và chiến lược, Liên Xô và Mỹ đã đối đầu và đi tới Chiến tranh lạnh.", ans:true},
+      {key:"c", text:"Chiến tranh lạnh là cuộc chiến tranh không tiếng súng và được biểu hiện chủ yếu qua các cuộc chiến tranh cục bộ.", ans:false},
+      {key:"d", text:"Chiến tranh lạnh đã định hình quan hệ quốc tế, quyết định vận mệnh của các quốc gia, dân tộc, nhất là các thuộc địa.", ans:false}
+    ]
+  },
+  {
+    id:"P2Q3", qnum:3,
+    intro:"Cho đoạn tư liệu sau đây:",
+    type:"quote",
+    quote:`"Việc Việt Nam tham gia ASEAN đã góp phần quan trọng thúc đẩy việc thành lập một ASEAN bao gồm cả 10 nước Đông Nam Á, chấm dứt tình trạng chia rẽ, đối đầu, căng thẳng ở khu vực, mở ra một giai đoạn mới khác hẳn về chất của quan hệ giữa các quốc gia ở khu vực; mở rộng hợp tác vì hòa bình phát triển, để ASEAN thực sự là của Đông Nam Á và vì Đông Nam Á".`,
+    source:"(Học viện Ngoại giao, Việt Nam trong tiến trình hội nhập và phát triển,\nNxb. Chính trị quốc gia, Hà Nội, 2009, tr. 292)",
+    subs:[
+      {key:"a", text:"Việt Nam gia nhập ASEAN vào năm 1995 đã biến Đông Nam Á thành tổ chức toàn khu vực với 10 thành viên.", ans:false},
+      {key:"b", text:"Khi Việt Nam gia nhập ASEAN, đã góp phần chấm dứt tình trạng chia rẽ, đối đầu, căng thẳng ở Đông Nam Á.", ans:true},
+      {key:"c", text:"Từ sau năm 1995, Đông Nam Á đã hoàn thành xây dựng ASEAN thành một tổ chức hoàn chỉnh, hợp tác toàn diện.", ans:false},
+      {key:"d", text:"Tổ chức ASEAN là biểu hiện rõ nét cho sự thành công của quá trình hợp tác khu vực vì hòa bình, ổn định, phát triển.", ans:true}
+    ]
+  },
+  {
+    id:"P2Q4", qnum:4,
+    intro:"Cho đoạn tư liệu sau đây:",
+    type:"quote",
+    quote:`"Trong nửa sau thế kỉ XX, có một từ đã xuất hiện trong tiếng nói của những người bảo vệ và kiến tạo hòa bình trên thế giới, một từ mà cùng một lúc rất nhiều ý nghĩa: đấu tranh, dũng cảm, anh hùng; và nó còn có ý nghĩa là chiến thắng, độc lập, tự do. Từ đó là Việt Nam. Và có một cái tên đã luôn gắn liền với từ này – từ chỉ tên của một đất nước. Đó là Hồ Chí Minh".`,
+    source:"(Ro-mét Chan-đờ-ra: Việt Nam trong thế kỉ XX, Tập 1,\nNXB Chính trị Quốc gia, Hà Nội, 2001, tr.48)",
+    subs:[
+      {key:"a", text:"Tư liệu đề cập đến vị trí của Việt Nam là lực lượng lãnh đạo phong trào giải phóng dân tộc trên thế giới ở thế kỷ XX.", ans:false},
+      {key:"b", text:"Trong nửa sau thế kỷ XX, Việt Nam đã trở thành biểu tượng của hòa bình, độc lập, tự do, các giá trị mà nhân loại hướng đến.", ans:true},
+      {key:"c", text:"Thắng lợi của cuộc đấu tranh giải phóng ở Việt Nam đã khẳng định vai trò lãnh đạo của Hồ Chí Minh đối với cách mạng thế giới.", ans:false},
+      {key:"d", text:"Việt Nam thế kỷ XX đã trở thành tấm gương cho các dân tộc đang đấu tranh nhằm bảo vệ và kiến tạo hòa bình thế giới.", ans:true}
+    ]
+  }
+];
+
+// ═══════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════
+let timeLeft = 45*60, timer = null, submitted = false;
+let q1List = [], ans1 = {}, ans2 = {};
+
+// ═══════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════
+const shuffle = a => { const b=[...a]; for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+
+function shuffleOpts(opts){
+  const keys = shuffle(Object.keys(opts));
+  const no={}, km={};
+  keys.forEach((ok,i)=>{ const nk=['A','B','C','D'][i]; no[nk]=opts[ok]; km[ok]=nk; });
+  return {no, km};
+}
+
+function fmtTime(s){
+  return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+}
+
+// ═══════════════════════════════════════
+//  BUILD
+// ═══════════════════════════════════════
+function buildP1(){
+  const wrap = document.getElementById('p1Wrap');
+  wrap.innerHTML='';
+  q1List = shuffle(P1).map((q,i)=>{
+    const {no,km} = shuffleOpts(q.opts);
+    return {...q, dn:i+1, opts:no, cdk:km[q.ans], km};
+  });
+  ans1={};
+  q1List.forEach(q=>{
+    const card = document.createElement('div');
+    card.className='qcard'; card.id=`qc_${q.id}`;
+    let oh='';
+    Object.entries(q.opts).forEach(([k,v])=>{
+      oh+=`<label class="opt" id="op_${q.id}_${k}" onclick="selOpt(${q.id},'${k}')">
+        <input type="radio" name="q_${q.id}" value="${k}">
+        <span class="opt-k">${k}</span><span>${v}</span>
+      </label>`;
+    });
+    card.innerHTML=`
+      <div class="qnum">Câu ${q.dn} <span style="font-style:italic;color:var(--soft);font-weight:400;font-size:.65rem;margin-left:4px;">[ID:${q.id}]</span></div>
+      <div class="qtag" id="qt_${q.id}"></div>
+      <div class="qtext">${q.q}</div>
+      <div class="opts">${oh}</div>`;
+    wrap.appendChild(card);
+  });
+}
+
+function buildP2(){
+  const wrap = document.getElementById('p2Wrap');
+  wrap.innerHTML=''; ans2={};
+  P2.forEach(q=>{
+    const card = document.createElement('div');
+    card.className='p2card';
+    let ctx='';
+    if(q.type==='table'){
+      const rows=q.tableData.map(r=>`<tr><td>${r.period}</td><td>${r.content}</td></tr>`).join('');
+      ctx=`<div class="tbl-wrap"><table class="p2-tbl"><thead><tr><th>Thời gian</th><th>Hoạt động</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    } else {
+      const lines=q.quote.split('\n').map(l=>l.startsWith('\t')?`<span style="display:block;text-indent:2em;">${l.slice(1)}</span>`:`<span style="display:block;">${l}</span>`).join('');
+      ctx=`<div class="quote-box">${lines}<span class="quote-src">${q.source.replace(/\n/g,'<br>')}</span></div>`;
+    }
+    let shtml='';
+    q.subs.forEach(s=>{
+      const sid=`${q.id}_${s.key}`; ans2[sid]=null;
+      shtml+=`<div class="sub" id="si_${sid}">
+        <div class="sub-lbl">Ý ${s.key})</div>
+        <div class="sub-txt">${s.text}</div>
+        <div class="tf-row">
+          <label class="tf-btn" id="tf_${sid}_T" onclick="selTF('${sid}',true)"><input type="radio"> ✓ Đúng</label>
+          <label class="tf-btn" id="tf_${sid}_F" onclick="selTF('${sid}',false)"><input type="radio"> ✗ Sai</label>
+        </div>
+        <div class="sub-note" id="sn_${sid}"></div>
+      </div>`;
+    });
+    card.innerHTML=`
+      <div class="qnum" style="margin-bottom:12px;">Câu ${q.qnum} <span style="font-weight:400;color:var(--soft);font-size:.7rem;font-style:italic;margin-left:4px;">(Phần II)</span></div>
+      <div class="p2-intro">${q.intro}</div>
+      ${ctx}${shtml}`;
+    wrap.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════
+//  INTERACTIONS
+// ═══════════════════════════════════════
+function selOpt(qid, key){
+  if(submitted) return;
+  const q = q1List.find(x=>x.id===qid);
+  ans1[qid]=key;
+  Object.keys(q.opts).forEach(k=>{ document.getElementById(`op_${qid}_${k}`).classList.remove('sel'); });
+  document.getElementById(`op_${qid}_${key}`).classList.add('sel');
+  document.getElementById(`qc_${qid}`).classList.add('done');
+  updateProg();
+}
+
+function selTF(sid, val){
+  if(submitted) return;
+  ans2[sid]=val;
+  const tl=document.getElementById(`tf_${sid}_T`);
+  const fl=document.getElementById(`tf_${sid}_F`);
+  tl.classList.remove('sel-t','sel-f'); fl.classList.remove('sel-t','sel-f');
+  val ? tl.classList.add('sel-t') : fl.classList.add('sel-f');
+  document.getElementById(`si_${sid}`).classList.add('done');
+  updateProg();
+}
+
+function updateProg(){
+  const done1 = Object.values(ans1).filter(v=>v).length;
+  const done2 = Object.values(ans2).filter(v=>v!==null).length;
+  const total=40, done=done1+done2;
+  document.getElementById('progFill').style.width=(done/total*100)+'%';
+  document.getElementById('doneCount').textContent=done;
+}
+
+// ═══════════════════════════════════════
+//  TIMER
+// ═══════════════════════════════════════
+function startTimer(){
+  timer = setInterval(()=>{
+    if(submitted){clearInterval(timer);return;}
+    timeLeft--;
+    const el=document.getElementById('timerVal');
+    el.textContent=fmtTime(timeLeft);
+    el.className='timer-val';
+    if(timeLeft<=300) el.classList.add('warn');
+    if(timeLeft<=60) el.classList.add('danger');
+    if(timeLeft<=0){ clearInterval(timer); triggerTimeUp(); }
+  },1000);
+}
+
+function triggerTimeUp(){
+  document.getElementById('timeupOverlay').classList.add('show');
+  let cd=3;
+  document.getElementById('timeupCd').textContent=cd;
+  document.getElementById('timeupBar').style.width='100%';
+  const iv=setInterval(()=>{
+    cd--;
+    document.getElementById('timeupCd').textContent=cd;
+    document.getElementById('timeupBar').style.width=(cd/3*100)+'%';
+    if(cd<=0){
+      clearInterval(iv);
+      document.getElementById('timeupOverlay').classList.remove('show');
+      doSubmit();
+    }
+  },1000);
+}
+
+// ═══════════════════════════════════════
+//  CONFIRM MODAL
+// ═══════════════════════════════════════
+function openConfirm(){
+  if(submitted) return;
+  const done1=Object.values(ans1).filter(v=>v).length;
+  const done2=Object.values(ans2).filter(v=>v!==null).length;
+  const total=40, done=done1+done2, left=total-done;
+  document.getElementById('confDone').textContent=done;
+  document.getElementById('confLeft').textContent=left;
+  document.getElementById('confTime').textContent=fmtTime(timeLeft);
+  if(left>0){
+    document.getElementById('confIcon').textContent='⚠️';
+    document.getElementById('confTitle').textContent='Còn câu chưa làm!';
+    document.getElementById('confMsg').innerHTML=`Bạn còn <strong style="color:var(--red)">${left} câu</strong> chưa trả lời. Những câu bỏ trống sẽ bị tính <strong>0 điểm</strong>. Bạn có chắc muốn nộp?`;
+  } else {
+    document.getElementById('confIcon').textContent='🎯';
+    document.getElementById('confTitle').textContent='Sẵn sàng nộp bài?';
+    document.getElementById('confMsg').textContent='Bạn đã hoàn thành tất cả các câu. Xác nhận nộp bài và xem kết quả.';
+  }
+  document.getElementById('confirmOverlay').classList.add('show');
+}
+
+function closeConfirm(){
+  document.getElementById('confirmOverlay').classList.remove('show');
+}
+
+// ═══════════════════════════════════════
+//  SUBMIT & SCORE
+// ═══════════════════════════════════════
+function doSubmit(){
+  document.getElementById('confirmOverlay').classList.remove('show');
+  if(submitted) return;
+  submitted=true; clearInterval(timer);
+  document.getElementById('unansStrip').classList.remove('show');
+  document.getElementById('btnSub').disabled=true;
+  document.getElementById('btnSub').textContent='✅  Đã nộp bài';
+
+  const sc=calcScore();
+  renderResult(sc);
+  showAns();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function calcScore(){
+  let c1=0,w1=0;
+  q1List.forEach(q=>{
+    const ch=ans1[q.id];
+    if(ch===q.cdk) c1++; else w1++;
+  });
+  let p2=0;
+  P2.forEach(q=>{
+    let cor=0;
+    q.subs.forEach(s=>{ if(ans2[`${q.id}_${s.key}`]===s.ans) cor++; });
+    if(cor===1) p2+=0.1;
+    else if(cor===2) p2+=0.25;
+    else if(cor===3) p2+=0.5;
+    else if(cor===4) p2+=1.0;
+  });
+  return {c1,w1,p1:c1*0.25,p2,total:c1*0.25+p2};
+}
+
+function renderResult({c1,w1,p1,p2,total}){
+  const panel=document.getElementById('resPanel');
+  panel.classList.add('show');
+
+  const big=document.getElementById('resBig');
+  big.textContent=total.toFixed(2);
+  const bar=document.getElementById('resBar');
+  const pct=Math.round(total/10*100);
+
+  setTimeout(()=>{ bar.style.width=pct+'%'; },50);
+
+  if(total>=8){ big.className='res-score-big great'; bar.className='res-bar-fill'; document.getElementById('resEmoji').textContent='🏆'; }
+  else if(total>=5){ big.className='res-score-big mid'; bar.className='res-bar-fill mid'; document.getElementById('resEmoji').textContent='📘'; }
+  else{ big.className='res-score-big low'; bar.className='res-bar-fill low'; document.getElementById('resEmoji').textContent='📖'; }
+
+  document.getElementById('resPct').textContent=`${pct}% số điểm tối đa`;
+  document.getElementById('rkC1').textContent=c1;
+  document.getElementById('rkW1').textContent=w1;
+  document.getElementById('rkP2').textContent=p2.toFixed(2);
+
+  const msgs=['💪 Hãy ôn tập thêm và làm lại để cải thiện nhé!','📚 Cần ôn lại các phần còn sai để đạt điểm cao hơn.','👍 Khá tốt! Ôn lại vài phần nữa là xuất sắc rồi!','🏅 Tốt lắm! Bạn nắm kiến thức khá vững.','🎉 Xuất sắc! Bạn thật sự nắm vững lịch sử!'];
+  document.getElementById('resMsg').textContent=msgs[Math.min(Math.floor(total/2),4)];
+}
+
+function showAns(){
+  q1List.forEach(q=>{
+    const ch=ans1[q.id], cor=q.cdk;
+    const card=document.getElementById(`qc_${q.id}`);
+    const tag=document.getElementById(`qt_${q.id}`);
+    card.classList.remove('done');
+    Object.keys(q.opts).forEach(k=>{
+      const el=document.getElementById(`op_${q.id}_${k}`);
+      el.classList.remove('sel'); el.classList.add('dis');
+      if(k===cor) el.classList.add('cor');
+    });
+    if(ch){
+      if(ch===cor){ card.classList.add('ok'); tag.className='qtag show ok'; tag.textContent='✓ Đúng'; }
+      else{ document.getElementById(`op_${q.id}_${ch}`).classList.add('wrg'); card.classList.add('bad'); tag.className='qtag show bad'; tag.textContent='✗ Sai'; }
+    } else { card.classList.add('bad'); tag.className='qtag show skip'; tag.textContent='○ Bỏ trống'; }
+  });
+
+  P2.forEach(q=>{
+    q.subs.forEach(s=>{
+      const sid=`${q.id}_${s.key}`;
+      const ch=ans2[sid], cor=s.ans;
+      const tl=document.getElementById(`tf_${sid}_T`);
+      const fl=document.getElementById(`tf_${sid}_F`);
+      const si=document.getElementById(`si_${sid}`);
+      const sn=document.getElementById(`sn_${sid}`);
+      tl.classList.add('dis'); fl.classList.add('dis');
+      tl.classList.remove('sel-t','sel-f'); fl.classList.remove('sel-t','sel-f');
+      cor ? tl.classList.add('cor-tf') : fl.classList.add('cor-tf');
+      si.classList.remove('done');
+      if(ch!==null){
+        if(ch===cor){ si.classList.add('ok'); sn.className='sub-note show ok'; sn.textContent='✓ Trả lời đúng'; }
+        else{
+          si.classList.add('bad');
+          ch ? tl.classList.add('wrg-tf') : fl.classList.add('wrg-tf');
+          sn.className='sub-note show bad'; sn.textContent=`✗ Sai — Đáp án đúng: ${cor?'Đúng':'Sai'}`;
+        }
+      } else { si.classList.add('bad'); sn.className='sub-note show bad'; sn.textContent=`○ Bỏ trống — Đáp án đúng: ${cor?'Đúng':'Sai'}`; }
+    });
+  });
+}
+
+// ═══════════════════════════════════════
+//  RETRY
+// ═══════════════════════════════════════
+function retryExam(){
+  submitted=false; clearInterval(timer);
+  timeLeft=45*60;
+  document.getElementById('timerVal').textContent='45:00';
+  document.getElementById('timerVal').className='timer-val';
+  document.getElementById('progFill').style.width='0%';
+  document.getElementById('doneCount').textContent='0';
+  document.getElementById('resPanel').classList.remove('show');
+  document.getElementById('btnSub').disabled=false;
+  document.getElementById('btnSub').textContent='📝  NỘP BÀI';
+  buildP1(); buildP2(); startTimer();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════
+buildP1(); buildP2(); startTimer();
+</script>
+</body>
+</html>
